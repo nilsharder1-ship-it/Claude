@@ -70,10 +70,10 @@ def main(argv=None):
     p.add_argument("--list-models", action="store_true")
     args = p.parse_args(argv)
 
-    if args.list_models:
-        print("\n".join(LLMClient(base_url=args.base_url, model="-").list_models()))
-        return
     try:
+        if args.list_models:
+            print("\n".join(LLMClient(base_url=args.base_url, model="-").list_models()))
+            return
         agent = build_agent(args)
     except RuntimeError as e:
         sys.exit(f"{RED}{e}{RST}")
